@@ -1,0 +1,16 @@
+
+{{template "base" .}}
+
+{{define "title"}}Output From {{ .form.Name }}{{end}}
+
+{{define "main"}}
+  <h2>Sign up Data For {{  .form.Name }}</h2>
+
+ <code>
+  <pre>
+    {{ .debug }}
+  </pre>
+  </code>
+{{end}}
+
+

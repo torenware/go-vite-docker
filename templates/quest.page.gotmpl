@@ -1,0 +1,62 @@
+
+{{template "base" .}}
+
+{{define "title"}}Join Arthur{{end}}
+
+{{define "main"}}
+  <h2>Sign up for the Quest</h2>
+
+  <form action="/" method="POST">
+
+    <div class="mb-3">
+      <label for="name" class="form-label">What Is Your Name</label>
+      <input type="text" class="form-control"
+          name="name" id="name"
+          required
+          placeholder="Your Name Good Sir">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address For the Internets</label>
+      <input type="email" class="form-control"
+          name="email" id="email"
+          required
+          placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+      <label for="purpose" class="form-label">What is Your Quest</label>
+      <textarea class="form-control"
+          name="purpose" id="purpose"
+          required
+          placeholder="A grail perhaps?" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="color" class="form-label">What is Your Favorite Color</label>
+      <select class="form-select"
+          name="color" id="color"
+          required
+          aria-label="Favorite color">
+      {{ range $color, $label := .colors }}
+        <option {{ if eq $color ""}}selected{{end}}
+          value="{{$color}}">
+        {{ $label }}
+        </option>
+      {{ end }}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="age" class="form-label">Your Age</label>
+      <input type="number" class="form-control"
+          name="age" id="age"
+          min="18"
+          placeholder="Your years">
+    </div>
+
+    <hr class="mb-3">
+
+    <button class="btn-primary">Join The King</button>
+  </form>
+{{end}}
+
+

@@ -108,13 +108,12 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data ma
 
 func main() {
 
-	//gob.Register(UserInfo{})
-
 	// We put our project in the frontend directory:
 	projDir := os.DirFS("frontend")
 	config := vueglue.ViteConfig{
-		Environment: "development",
-		FS:          projDir,
+		Environment:     "development",
+		FS:              projDir,
+		DevServerDomain: "app.localhost",
 	}
 
 	// Declare our router

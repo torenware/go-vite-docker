@@ -2,24 +2,9 @@ version: '3'
 
 services:
 
-  # goapp:
-  #   container_name: goapp
-  #   image: vitestuff/goapp
-  #   ports:
-  #     - 80:80
-  #   build:
-  #     context: docker/goproj
-  #   volumes:
-  #     - consistency: cached
-  #       source: .
-  #       target: /app/project
-  #       type: bind
-
   goapp:
     container_name: goapp
     image: vitestuff/goapp
-    ports:
-      - 80:80
     environment:
       - air_wd=/app/project
     build:
@@ -33,8 +18,6 @@ services:
   vite:
     container_name: vite
     image: vitestuff/vite-env
-    ports:
-     - 5173:5173
     build:
       context: docker/vitevol
       args:
@@ -45,3 +28,16 @@ services:
         target: /app/frontend
         type: bind
 
+  reverse:
+    container_name: reverse
+    hostname: reverse
+    image: nginx
+    depends_on:
+      - goapp
+      - vite
+    ports:
+      - 80:80
+      - 5173:5173
+      - 5174:5174
+    volumes:
+      - ./docker/nginx:/etc/nginx:ro

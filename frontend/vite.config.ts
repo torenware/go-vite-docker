@@ -1,8 +1,14 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  
-  build: {
-    manifest: "manifest.json"
-  }
-})
+    server: {
+        watch: {
+            // bind volumes don't get fs events
+            // so we need to poll now.
+            usePolling: true,
+        },
+    },
+    build: {
+        manifest: 'manifest.json',
+    },
+});

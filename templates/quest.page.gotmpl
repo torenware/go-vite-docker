@@ -6,23 +6,23 @@
 {{define "main"}}
   <h2>Sign up for the Quest</h2>
 
-  <form action="/" method="POST">
+  <form action="/" method="POST" novalidate id="signup-knights">
 
-    <div class="mb-3">
+    <div class="mb-3 form-group">
       <label for="name" class="form-label">What Is Your Name</label>
       <input type="text" class="form-control"
           name="name" id="name"
           required
           placeholder="Your Name Good Sir">
     </div>
-    <div class="mb-3">
+    <div class="mb-3 form-group">
       <label for="email" class="form-label">Email address For the Internets</label>
       <input type="email" class="form-control"
           name="email" id="email"
           required
           placeholder="name@example.com">
     </div>
-    <div class="mb-3">
+    <div class="mb-3 form-group">
       <label for="purpose" class="form-label">What is Your Quest</label>
       <textarea class="form-control"
           name="purpose" id="purpose"
@@ -30,7 +30,7 @@
           placeholder="A grail perhaps?" rows="3"></textarea>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 form-group">
       <label for="color" class="form-label">What is Your Favorite Color</label>
       <select class="form-select"
           name="color" id="color"
@@ -45,7 +45,7 @@
       </select>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 form-group">
       <label for="age" class="form-label">Your Age</label>
       <input type="number" class="form-control"
           name="age" id="age"

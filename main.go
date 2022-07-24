@@ -1,15 +1,16 @@
 package main
 
 import (
-	"encoding/gob"
 	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/go-chi/chi/v5"
+	vueglue "github.com/torenware/vite-go"
 )
 
 const (
@@ -23,6 +24,8 @@ type UserInfo struct {
 	Age           int    `json:"age"`
 	FavoriteColor string `json:"color"`
 }
+
+var viteLib *vueglue.VueGlue
 
 func QuestForm(w http.ResponseWriter, r *http.Request) {
 	colors := map[string]string{
@@ -51,7 +54,7 @@ func ProcessQuestForm(w http.ResponseWriter, r *http.Request) {
 	data := &UserInfo{}
 	data.Name = r.PostForm.Get("name")
 	data.Email = r.PostForm.Get("email")
-	data.FavoriteColor = r.PostForm.Get("email")
+	data.FavoriteColor = r.PostForm.Get("color")
 	data.Purpose = r.PostForm.Get("purpose")
 	age, _ := strconv.Atoi(r.PostForm.Get("age"))
 	data.Age = age
@@ -68,7 +71,7 @@ func ProcessQuestForm(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, r, "result.page", tmplData, "base.layout")
 }
 
-func renderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data any, partials ...string) {
+func renderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data map[string]any, partials ...string) {
 	templateList := []string{
 		fmt.Sprintf("./templates/%s.gotmpl", tmpl),
 	}
@@ -76,6 +79,14 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data an
 		for _, item := range partials {
 			templateList = append(templateList, fmt.Sprintf("./templates/%s.gotmpl", item))
 		}
+	}
+
+	if data == nil {
+		data = map[string]any{
+			"vite": viteLib,
+		}
+	} else {
+		data["vite"] = viteLib
 	}
 
 	ts, err := template.ParseFiles(templateList...)
@@ -94,14 +105,40 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data an
 
 func main() {
 
-	gob.Register(UserInfo{})
+	//gob.Register(UserInfo{})
 
+	// We put our project in the frontend directory:
+	projDir := os.DirFS("frontend")
+	config := vueglue.ViteConfig{
+		Environment: "development",
+		FS:          projDir,
+	}
+
+	// Declare our router
 	mux := chi.NewMux()
+
+	// Initialize our Vite library
+	glue, err := vueglue.NewVueGlue(&config)
+	if err != nil {
+		log.Panicf("could not initialize vite library: %v", err)
+	}
+	viteLib = glue
+
 	mux.Get("/", QuestForm)
 	mux.Post("/", ProcessQuestForm)
 
+	// Set up our vite asset server
+	// Calling NewVueGlue updates the config object
+	// to contain some useful defaults:
+	fsHandler, err := viteLib.FileServer()
+	if err != nil {
+		log.Printf("vite asset server did not initialize: %v", err)
+	}
+
+	mux.Get(config.URLPrefix+"*", fsHandler.ServeHTTP)
+
 	log.Printf("Starting quest server on port %d", appPort)
-	err := http.ListenAndServe(fmt.Sprintf(":%d", appPort), mux)
+	err = http.ListenAndServe(fmt.Sprintf(":%d", appPort), mux)
 	if err != nil {
 		log.Fatalf("Listen failed: %v", err)
 	}

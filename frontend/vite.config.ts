@@ -7,6 +7,11 @@ export default defineConfig({
             // so we need to poll now.
             usePolling: true,
         },
+        hmr: {
+            clientPort: 5174,
+            port: 3010,
+            //host: 'app.localhost',
+        },
     },
     build: {
         manifest: 'manifest.json',

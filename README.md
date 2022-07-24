@@ -12,6 +12,18 @@ parts of the series are branches in this repo. I start with a simple Go web appl
 
 This will take about 3 articles to describe, since each step has its own pitfalls and problems we need to explain and overcome. Should be fun!
 
+## Reading List
+
+A number of articles and software packages were essential in figuring out how to do this tutorial.  Here are my main sources:
+
+* [How to set up an easy and secure reverse proxy with Docker, Nginx & Letsencrypt](https://www.freecodecamp.org/news/docker-nginx-letsencrypt-easy-secure-reverse-proxy-40165ba3aee2/). This freeCodeCamp piece is my major source for setting up Nginx as a reverse proxy on Docker. If you need to learn how to do that, this is your article.
+* [How to handle https with docker-compose and mkcert for local development](https://knplabs.com/en/blog/how-to-handle-https-with-docker-compose-and-mkcert-for-local-development) Excellent instructions on how to set up and use [mkcert](https://github.com/FiloSottile/mkcert) to create certificates. As for Traefik, another solution for the reverse proxy: I just couldn't get it to work. Not the article's fault.
+* [Vite 3 configuration docs](https://vitejs.dev/config/).  Generally great, although the sections on websocket configuration are somewhat lacking. It took a fair bit of trial and error to figure out how to configure HMR.
+* [vite-go](https://github.com/torenware/vite-go): Tooting my own horn here. My [Vite integration](https://vitejs.dev/guide/backend-integration.html) module for Go.
+* [Air](https://github.com/cosmtrek/air), an easy to use development build utility for Go. Air rocks, and the Air docs rock too. Using the author's docker image was truly easy to do.
+* [DDEV](https://ddev.readthedocs.io/en/stable/), a Docker Compose based development environment popular with the PHP community. DDEV is a great tool, and learning how DDEV works helped a great deal in getting my much more bare-boned solution to work for Go. If you do PHP development, DDEV should be an essential part of your toolset. 
+* [Working with Microservices in Go (Golang)](https://www.udemy.com/course/working-with-microservices-in-go/) (Udemy course). Trevor Sawler's Go courses are excellent, and this course in particular helped me get this tutorial to work. Good background on using Docker Compose in Go development.
+* [Websocket Handshaking](https://www.cuelogic.com/blog/websocket-handshaking): article on how a websocket connection gets set up. Useful to know, especially when things aren't working as you expect.
 
 Copyright © 2022 Rob Thorne
 

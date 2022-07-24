@@ -51,6 +51,9 @@ func ProcessQuestForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Certainly, we'd want to validate data here if this
+	// was a real app, and not just a demo:
+
 	data := &UserInfo{}
 	data.Name = r.PostForm.Get("name")
 	data.Email = r.PostForm.Get("email")

@@ -2,7 +2,7 @@ import './style.css';
 
 type FormItems = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
-console.log('JS from vite has loaded.');
+console.log('JS from vite is loaded.');
 
 document.addEventListener('DOMContentLoaded', () => {
     let hasForms = false;

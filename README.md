@@ -10,7 +10,14 @@ parts of the series are branches in this repo. I start with a simple Go web appl
 4. [Adding an Nginx Router](https://github.com/torenware/go-vite-docker/tree/03-add-router). Set up an Nginx reverse proxy to access our Go and Vite links.
 5. [Creating Certificates and Adding SSL to the Router](https://github.com/torenware/go-vite-docker/tree/04-add-ssl). Create our certs with mkcert, and modify our Nginx reverse proxy to terminate our links with SSL.
 
-This will take about 3 articles to describe, since each step has its own pitfalls and problems we need to explain and overcome. Should be fun!
+## The Articles
+
+The pieces of the "Doing Frontend Development with Golang, JavaScript and Docker" series are now up on Medium:
+
+  *  [Part the First: Better JavaScript in Go with Vite](https://robthorne-26852.medium.com/doing-frontend-development-with-golang-javascript-and-docker-part-the-first-e801ab6df940)
+  *  [Part the Second: Dockerize Your Go and Vite Setup](https://robthorne-26852.medium.com/doing-frontend-development-with-golang-javascript-and-docker-part-the-second-44e955b24387)
+  *  [Part the Third: Creating Certificates and Setting up a Router](https://robthorne-26852.medium.com/doing-frontend-development-with-golang-javascript-and-docker-part-the-third-6f624ed8611d)
+
 
 ## Reading List
 

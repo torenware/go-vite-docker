@@ -38,7 +38,6 @@ services:
     ports:
       - 443:443
       - 5173:5173
-      - 5174:5174
     volumes:
       - ./docker/nginx:/etc/nginx:ro
       - ./docker/certs:/etc/ssl/private:ro

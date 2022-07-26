@@ -14,6 +14,7 @@
           name="name" id="name"
           required
           placeholder="Your Name Good Sir">
+    <div class="errors">err</div>
     </div>
     <div class="mb-3 form-group">
       <label for="email" class="form-label">Email address For the Internets</label>
@@ -21,6 +22,7 @@
           name="email" id="email"
           required
           placeholder="name@example.com">
+      <div class="errors">err</div>
     </div>
     <div class="mb-3 form-group">
       <label for="purpose" class="form-label">What is Your Quest</label>
@@ -28,6 +30,7 @@
           name="purpose" id="purpose"
           required
           placeholder="A grail perhaps?" rows="3"></textarea>
+      <div class="errors">err</div>
     </div>
 
     <div class="mb-3 form-group">
@@ -43,6 +46,7 @@
         </option>
       {{ end }}
       </select>
+      <div class="errors">err</div>
     </div>
 
     <div class="mb-3 form-group">
@@ -51,6 +55,7 @@
           name="age" id="age"
           min="18"
           placeholder="Your years">
+      <div class="errors">err</div>
     </div>
 
     <hr class="mb-3">

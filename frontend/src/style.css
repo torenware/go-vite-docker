@@ -1,8 +1,19 @@
 div.form-group.invalid input,
 div.form-group.invalid select,
-div.form-group.invalid textarea {
+div.form-group.invalid textarea,
+div.form-group.invalid label,
+div.form-group div.errors {
   color: red;
   border-color: red;
+}
+
+div.form-group div.errors {
+  display: none;
+}
+
+div.form-group.invalid div.errors {
+  display: block;
+  padding-left: .75rem;
 }
 
 form[novalidate] button.btn-primary:disabled,

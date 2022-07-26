@@ -10,14 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // HOF for change handlers
     const changeHandler = (div: HTMLDivElement, item: FormItems) => {
+        const errItem = div.querySelector('div.errors');
         return () => {
             if (item.checkValidity()) {
                 if (div.classList.contains('invalid')) {
                     div.classList.remove('invalid');
                 }
+                if (errItem) {
+                    errItem.innerHTML = '';
+                }
             } else {
                 if (!div.classList.contains('invalid')) {
                     div.classList.add('invalid');
+                }
+                if (errItem) {
+                    errItem.innerHTML = item.validationMessage;
                 }
             }
         };

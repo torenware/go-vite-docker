@@ -114,7 +114,7 @@ func main() {
 		Environment:     "development",
 		FS:              projDir,
 		DevServerDomain: "app.localhost",
-		HTTPS:           true,
+		// HTTPS:           true,
 	}
 
 	// Declare our router

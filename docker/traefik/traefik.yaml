@@ -1,0 +1,14 @@
+global:
+  sendAnonymousUsage: false
+
+providers:
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    watch: true
+    exposedbydefault: false
+
+entryPoints:
+  vite:
+    address: ':5173'
+  goapp:
+    address: ':80'

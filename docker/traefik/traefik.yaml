@@ -12,3 +12,6 @@ entryPoints:
     address: ':5173'
   goapp:
     address: ':80'
+
+log:
+  level: DEBUG

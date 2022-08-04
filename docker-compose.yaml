@@ -7,7 +7,9 @@ services:
     container_name: traefik
     labels:
       - "traefik.enable=true"
+      - "traefik.http.middlewares.autodetect.contenttype.autodetect=true"
       - "traefik.http.routers.traefik=true"
+      #- "traefik.http.middlewares.testheader.headers.accesscontrolalloworiginlist=http://app.localhost"
     ports:
       - 80:80
       - 5173:5173
@@ -41,6 +43,8 @@ services:
   vite:
     container_name: vite
     image: vitestuff/vite-env
+    ports:
+      - "5173"
     build:
       context: docker/vitevol
       args:
@@ -48,9 +52,11 @@ services:
     labels:
       # https://stackoverflow.com/a/57679662/8600734
       - "traefik.enable=true"
-      - "traefik.http.routers.vite.rule=Host(`vite.app.localhost`)"
-      - "traefik.http.middlewares.autodetect.contenttype.autodetect=false"
+      - "traefik.http.routers.vite.rule=Host(`app.localhost:5173`)"
       - "traefik.http.services.vite.loadbalancer.server.port=5173"
+      - traefik.http.middlewares.testHeader.headers.accesscontrolalloworiginlist=*
+      - traefik.http.middlewares.testHeader.headers.accesscontrolallowcredentials=true
+      - "traefik.http.middlewares.testHeader.headers.addvaryheader=true"
     volumes:
       - consistency: consistent
         source: ./frontend

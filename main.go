@@ -115,6 +115,7 @@ func main() {
 		FS:              projDir,
 		DevServerDomain: "app.localhost",
 		// HTTPS:           true,
+		EntryPoint: "src/main.ts",
 	}
 
 	// Declare our router

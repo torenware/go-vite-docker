@@ -59,16 +59,3 @@ services:
         target: /app/frontend
         type: bind
 
-  # reverse:
-  #   container_name: reverse
-  #   hostname: reverse
-  #   image: nginx
-  #   depends_on:
-  #     - goapp
-  #     - vite
-  #   ports:
-  #     - 443:443
-  #     - 5173:5173
-  #   volumes:
-  #     - ./docker/nginx:/etc/nginx:ro
-  #     - ./docker/certs:/etc/ssl/private:ro

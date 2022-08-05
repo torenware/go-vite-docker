@@ -14,4 +14,4 @@ entryPoints:
     address: ':80'
 
 log:
-  level: DEBUG
+  level: INFO
